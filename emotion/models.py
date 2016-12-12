@@ -7,7 +7,9 @@ class Emotion(models.Model):
         ('An', 'Angry'),
         ('Co', 'Confused'),
         ('Ha', 'Happy'),
+        ('Ro', 'Romantic'),  # oh really :O
         ('De', 'Depressed'),
+        ('Si', 'Sick'),
         ('Ax', 'anxious'),  # thanks to hiren  :P  lol
         ('Wo', 'worried'),
         ('Fr', 'frightening'),
