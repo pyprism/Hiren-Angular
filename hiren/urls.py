@@ -13,9 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from emotion import views
+from django.contrib.auth import views as logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.login, name='login'),
+    url(r'^logout/$', logout.logout, {'next_page': '/'}, name="logout"),
+    url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^emotion/(?P<key>[^\.]+)/$', views.emotion_save, name='emotion save'),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
