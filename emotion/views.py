@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib import messages
 from .models import Emotion
 from .forms import EmotionForm
+import datetime
 from django.shortcuts import get_object_or_404
 
 
@@ -40,10 +41,11 @@ def dashboard(request):
 
 
 @login_required
-def emotion_save(request, key):
+def emotion_save(request, key=None):
     if request.method == 'GET':
+        _date = datetime.datetime.now().strftime("%m/%d/%Y")
         emotion = dict(Emotion.emotion_option)[key]
-        return render(request, 'emotion_save.html', {'key': key, 'emotion': emotion})
+        return render(request, 'emotion_save.html', {'key': key, 'emotion': emotion, 'date': _date})
     elif request.method == 'POST':
         form = EmotionForm(request.POST)
         if form.is_valid():
@@ -55,3 +57,10 @@ def emotion_save(request, key):
         else:
             messages.error(request, form.errors)
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def chart(request):
+    today = datetime.datetime.now()
+    from_this_year = Emotion.objects.filter(created_at__year=today.year)
+    return render(request, 'chart.html')
