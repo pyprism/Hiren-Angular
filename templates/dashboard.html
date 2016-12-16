@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% load staticfiles %}
+    {% static "" as baseUrl %}
+    {% for key, value in emotions %}
+    <div class="row">
+       <div class="col-md-4">
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{ baseUrl }}img/{{ value}}.png">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a href="/emotion/{{ key }}/" >{{ value }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
