@@ -12,9 +12,10 @@ class Emotion(models.Model):
         ('Si', 'Sick'),
         ('Ax', 'Anxious'),  # thanks to hiren  :P  lol
         ('Wo', 'Worried'),
-        ('Fr', 'Frightening'),
+        ('Fr', 'Frightened'),
     )
     state = models.CharField(max_length=2, choices=emotion_option)
-    reason = models.CharField(max_length=1000, null=True)
+    reason = models.CharField(max_length=1000, null=True, blank=True)
+    _date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
