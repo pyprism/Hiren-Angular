@@ -10,9 +10,9 @@ class Emotion(models.Model):
         ('Ro', 'Romantic'),  # oh really :O
         ('De', 'Depressed'),
         ('Si', 'Sick'),
-        ('Ax', 'anxious'),  # thanks to hiren  :P  lol
-        ('Wo', 'worried'),
-        ('Fr', 'frightening'),
+        ('Ax', 'Anxious'),  # thanks to hiren  :P  lol
+        ('Wo', 'Worried'),
+        ('Fr', 'Frightening'),
     )
     state = models.CharField(max_length=2, choices=emotion_option)
     reason = models.CharField(max_length=1000, null=True)
