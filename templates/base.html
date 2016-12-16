@@ -24,7 +24,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/add_online/" class="fa fa-line-chart"> Chart</a></li>
+                    <li><a href="{% url 'chart' %}" class="fa fa-line-chart"> Chart</a></li>
                     <li><a href="{% url 'dashboard' %}" class="fa fa-dashboard"> Dashboard </a></li>
                     <li><a href="{% url 'logout' %}" class="fa fa-sign-out"> Logout </a></li>
                 </ul>
@@ -55,6 +55,9 @@
 <noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
 <!-- End Piwik Code -->
 
+<script src="{% static 'js/jquery.min.js' %}" async></script>
+<script src="{% static 'js/Chart.min.js' %}" async></script>
+<script src="{% static 'js/chart_all.js' %}" async></script>
 
 </body>
 </html>
