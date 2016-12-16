@@ -24,7 +24,9 @@ urlpatterns = [
     url(r'^$', views.login, name='login'),
     url(r'^logout/$', logout.logout, {'next_page': '/'}, name="logout"),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
-    url(r'^emotion/(?P<key>[^\.]+)/$', views.emotion_save, name='emotion save'),
+    url(r'^emotion/$', views.emotion_save, name='emotion save'),
+    url(r'^emotion/(?P<key>[^\.]+)/$', views.emotion_save, name='emotion'),
+    url(r'^chart/$', views.chart, name='chart'),
 ]
 
 if settings.DEBUG:
