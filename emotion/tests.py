@@ -31,3 +31,11 @@ class LoginViewTest(TransactionTestCase):
     def test_login_url_resolves_to_login_view(self):
         found = resolve('/')
         self.assertEqual(found.func, views.login)
+
+    def test_auth_works(self):
+        respond = self.c.post('/', {'username': 'hiren', 'password': 'bunny'})
+        self.assertRedirects(respond, '/dashboard/')
+
+    def test_redirect_works_for_bad_auth(self):
+        respond = self.c.post('/', {'username': 'hiren', 'password': 'bad pass'})
+        self.assertRedirects(respond, '/')
