@@ -3,6 +3,7 @@ from django.test import TestCase, TransactionTestCase
 from django.contrib.auth.models import User
 from django.test import Client
 from .models import Emotion
+from . import views
 from freezegun import freeze_time
 
 
@@ -17,3 +18,16 @@ class ModelTest(TransactionTestCase):
 
         emotion = Emotion.objects.all()
         self.assertEqual(emotion[0].state, 'Sa')
+
+
+class LoginViewTest(TransactionTestCase):
+    reset_sequences = True
+
+    def setUp(self):
+        Emotion.objects.create(state='Sa', reason="test", _date='2016-12-17')
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+
+    def test_login_url_resolves_to_login_view(self):
+        found = resolve('/')
+        self.assertEqual(found.func, views.login)
