@@ -156,8 +156,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = "/home"
+LOGIN_URL = '/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
