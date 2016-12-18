@@ -21,6 +21,9 @@ class ModelTest(TransactionTestCase):
 
 
 class LoginViewTest(TransactionTestCase):
+    """
+    Test for login view
+    """
     reset_sequences = True
 
     def setUp(self):
@@ -52,3 +55,33 @@ class LoginViewTest(TransactionTestCase):
     def test_view_returns_correct_template(self):
         response = self.c.get('/')
         self.assertTemplateUsed(response, 'login.html')
+
+
+class DashboardViewTest(TransactionTestCase):
+    """
+    Test for dashboard
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+
+    def test_context_variable(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.get('/dashboard/')
+        self.assertEqual(response.context['emotions'], Emotion.emotion_option)
+
+    def test_view_returns_correct_template(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.get('/dashboard/')
+        self.assertTemplateUsed(response, 'dashboard.html')
+
+    def test_redirect_works_for_bad_auth(self):
+        self.c.login(username='hiren', password='bunny :D')
+        response = self.c.get('/dashboard/')
+        self.assertRedirects(response, '/?next=/dashboard/')
+
+    def test_dashboard_url_resolves_to_view_function(self):
+        found = resolve('/dashboard/')
+        self.assertEqual(found.func, views.dashboard)
