@@ -25,7 +25,7 @@ def login(request):
             messages.error(request, 'Username/Password is not valid!')
             return redirect('/')
     if request.user.is_authenticated:
-        redirect('dashboard')
+        return redirect('dashboard')
     return render(request, 'login.html')
 
 
