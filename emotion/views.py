@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import Emotion
 from .forms import EmotionForm
 import datetime
+from django.http import JsonResponse
+from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 
 
@@ -42,6 +44,12 @@ def dashboard(request):
 
 @login_required
 def emotion_save(request, key=None):
+    """
+    Save emotion or serve emotion form by type
+    :param request:
+    :param key:
+    :return:
+    """
     if request.method == 'GET':
         _date = datetime.datetime.now().strftime("%m/%d/%Y")
         emotion = dict(Emotion.emotion_option)[key]
@@ -61,6 +69,22 @@ def emotion_save(request, key=None):
 
 @login_required
 def chart(request):
-    today = datetime.datetime.now()
-    from_this_year = Emotion.objects.filter(created_at__year=today.year)
-    return render(request, 'chart.html')
+    """
+    Return all emotion count of current year
+    :param request:
+    :return:
+    """
+    if request.content_type == 'text/plain':
+        return render(request, 'chart.html')
+    elif request.content_type == 'application/json':
+        data = []
+        today = datetime.datetime.now()
+        for emotion in Emotion.emotion_option:
+            months = []
+            for hiren in range(1, 13):
+                single_month = Emotion.objects.filter(created_at__year=today.year, created_at__month=hiren,
+                                                      state=emotion[0]).count()
+                months.append(single_month)
+            temp = {'name': emotion[1], 'data': months}
+            data.append(temp)
+        return JsonResponse(data, safe=False)
