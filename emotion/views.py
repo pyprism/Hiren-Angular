@@ -74,7 +74,7 @@ def chart(request):
     :param request:
     :return:
     """
-    if request.content_type == 'text/plain':
+    if request.META.get('HTTP_ACCEPT').startswith("text/html"): # last commit for 2016 :')  bye bye 2k16
         return render(request, 'chart.html')
     elif request.content_type == 'application/json':
         data = []
