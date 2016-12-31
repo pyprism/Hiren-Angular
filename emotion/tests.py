@@ -77,11 +77,30 @@ class DashboardViewTest(TransactionTestCase):
         response = self.c.get('/dashboard/')
         self.assertTemplateUsed(response, 'dashboard.html')
 
-    def test_redirect_works_for_bad_auth(self):
-        self.c.login(username='hiren', password='bunny :D')
+    def test_redirect_works_for_anon_user(self):
         response = self.c.get('/dashboard/')
         self.assertRedirects(response, '/?next=/dashboard/')
 
     def test_dashboard_url_resolves_to_view_function(self):
         found = resolve('/dashboard/')
         self.assertEqual(found.func, views.dashboard)
+
+
+class EmotionSaveViewTest(TransactionTestCase):
+    """
+    Test for emotion_save view
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+
+    def test_view_returns_correct_template(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.get('/emotion/An/')
+        self.assertTemplateUsed(response, 'emotion_save.html')
+
+    def test_redirect_works_for_anon_user(self):
+        response = self.c.get('/emotion/An/')
+        self.assertRedirects(response, '/?next=/emotion/An/')
