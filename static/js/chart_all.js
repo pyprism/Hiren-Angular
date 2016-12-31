@@ -8,9 +8,9 @@ $(function () {
             console.log(data);
             var myChart = Highcharts.chart('chart_full', {
                 chart: {
-                    type: 'spline'
+                    type: 'spline',
+                    zoomType: 'xy'
                 },
-                zoomType: 'x',
                 title: {
                     text: 'Yearly Emotional Graph'
                 },
