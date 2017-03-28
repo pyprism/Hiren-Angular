@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'emotion'
+    'emotion',
+    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -149,7 +150,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS = (
@@ -158,6 +160,11 @@ STATICFILES_DIRS = (
 
 LOGIN_URL = '/'
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# django compress
+COMPRESS_ROOT = os.path.join(BASE_DIR, "static")
+
+COMPRESS_OFFLINE = True
+
+# dj-debug-toolbar
 
 INTERNAL_IPS = '127.0.0.1'
