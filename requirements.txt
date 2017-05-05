@@ -2,7 +2,7 @@ appdirs==1.4.3
 Django==1.11
 django-appconf==1.0.2
 django-compressor==2.1.1
-django-debug-toolbar==1.7
+django-debug-toolbar==1.8
 freezegun==0.3.8
 packaging==16.8
 psycopg2==2.7.1
