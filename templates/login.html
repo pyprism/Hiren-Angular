@@ -2,49 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hirention: Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hiren-Reminder: Login</title>
     {% load staticfiles %}
     <link rel="icon" href="{% static 'favicon.ico' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+    {% load compress %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}" />
+    {% endcompress %}
 </head>
 <body>
-
-<div id="login">
-  <form method="post" action="{%  url 'login' %}"> {% csrf_token %}
-      {% if messages %}
-              <div class="alert alert-info" role="alert">
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-              </div>
+<hgroup>
+    <h1>Hiren-Emotion</h1>
+</hgroup>
+<form action="{% url 'login' %}" method="post"> {% csrf_token %}
+    {% if messages %}
+    <div class="alert alert-info" role="alert">
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     {% endif %}
-    <h1>Sign In</h1>
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <button>Sign in</button>
-  </form>
-</div>
-
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDomains", ["*.emotion.pyprism.me"]]);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//piwik.pyprism.me/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', '2']);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//piwik.pyprism.me/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
-
+    <div class="group">
+        <input type="text" name="username" required><span class="highlight"></span><span class="bar"></span>
+        <label>Username</label>
+    </div>
+    <div class="group">
+        <input type="password" name="password"  required><span class="highlight"></span><span class="bar"></span>
+        <label>Password</label>
+    </div>
+    <button type="submit" class="button buttonBlue">Login
+        <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+    </button>
+    {% compress js %}
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/js/login.js' %}"></script>
+    {% endcompress %}
+</form>
 </body>
 </html>
