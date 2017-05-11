@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 import json
 import datetime
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,6 +50,11 @@ INSTALLED_APPS = [
     'emotion',
     "compressor",
 ]
+
+if DEBUG is False:
+    INSTALLED_APPS += [
+        'raven.contrib.django.raven_compat',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -241,4 +247,11 @@ LOGGING = {
     }
 }
 
-
+# sentry.io
+if not DEBUG:
+    RAVEN_CONFIG = {
+        'dsn': JSON_DATA['sentry_dsn'],
+        # If you are using git, you can also automatically configure the
+        #  release based on the git info.
+        'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+    }
