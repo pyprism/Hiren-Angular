@@ -6,7 +6,6 @@ django-compressor==2.1.1
 django-debug-toolbar==1.8
 freezegun==0.3.8
 packaging==16.8
-pkg-resources==0.0.0
 psycopg2==2.7.1
 pyparsing==2.2.0
 python-dateutil==2.6.0
