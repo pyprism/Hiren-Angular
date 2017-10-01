@@ -88,3 +88,8 @@ def chart(request):
             temp = {'name': emotion[1], 'data': months}
             data.append(temp)
         return JsonResponse(data, safe=False)
+
+
+@login_required
+def list(request):
+    pass
