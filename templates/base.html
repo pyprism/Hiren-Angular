@@ -31,11 +31,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'dashboard' %}"><div class="fa fa-smile-o"> Emotions </div></a></li>
-                    <li><a href="{% url 'chart' %}" class="fa fa-line-chart"> Chart</a></li>
+                    <li><a href="{% url 'dashboard' %}"><div class="fa fa-smile-o fa-lg"> Emotions </div></a></li>
+                    <li><a href="{% url 'chart' %}" class="fa fa-line-chart fa-lg"> Chart</a></li>
+                    <li><a href="{% url 'list' %}" class="fa fa-list fa-lg"> List</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'logout' %}"><div class="fa fa-sign-out" > Logout</div></a></li>
+                    <li><a href="{% url 'logout' %}"><div class="fa fa-sign-out fa-lg" > Logout</div></a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
