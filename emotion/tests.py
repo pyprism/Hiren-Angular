@@ -104,3 +104,19 @@ class EmotionSaveViewTest(TransactionTestCase):
     def test_redirect_works_for_anon_user(self):
         response = self.c.get('/emotion/An/')
         self.assertRedirects(response, '/?next=/emotion/An/')
+
+
+class ListViewTest(TransactionTestCase):
+    """
+    Test for emotion_save view
+    """
+    reset_sequences = True
+
+    def setUp(self):
+        self.c = Client()
+        self.user = User.objects.create_user('hiren', 'a@b.com', 'bunny')
+
+    def test_view_returns_correct_template(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.get('/list/')
+        self.assertTemplateUsed(response, 'list.html')
