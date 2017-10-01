@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^emotion/$', views.emotion_save, name='emotion save'),
     url(r'^emotion/(?P<key>[^\.]+)/$', views.emotion_save, name='emotion'),
     url(r'^chart/$', views.chart, name='chart'),
-    url(r'^list/$', views.chart, name='list'),
+    url(r'^list/$', views.list, name='list'),
 ]
 
 if settings.DEBUG:
