@@ -1,7 +1,7 @@
 /**
  * Created by prism on 12/16/16.
  */
-$(function () {
+function graph() {
     $.ajax('/chart/', {
         contentType: 'application/json',
         success: function(data) {
@@ -60,4 +60,4 @@ $(function () {
      data: [5, 7, 3]
      }]
      });*/
-});
+}

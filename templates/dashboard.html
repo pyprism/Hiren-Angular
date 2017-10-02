@@ -3,23 +3,24 @@
 
     {% load staticfiles %}
     {% static "" as baseUrl %}
-    {% for key, value in emotions %}
     <div class="row">
-       <div class="col-md-4">
-            <div class="card hovercard">
-                <div class="cardheader">
+        {% for key, value in emotions %}
+            <div class="col-md-4">
+                <div class="card hovercard">
+                    <div class="cardheader">
 
-                </div>
-                <div class="avatar">
-                    <a href="/emotion/{{ key }}/" ><img alt="" src="{{ baseUrl }}img/{{ value}}.png"></a>
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <a href="/emotion/{{ key }}/" >{{ value }}</a>
+                    </div>
+                    <div class="avatar">
+                        <a href="/emotion/{{ key }}/" ><img alt="" src="{{ baseUrl }}img/{{ value}}.png"></a>
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a href="/emotion/{{ key }}/" >{{ value }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+
     </div>
 {% endblock %}

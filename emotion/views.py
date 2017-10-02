@@ -6,6 +6,7 @@ from .models import Emotion
 from .forms import EmotionForm
 import datetime
 from django.http import JsonResponse
+import calendar
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 
@@ -88,3 +89,22 @@ def chart(request):
             temp = {'name': emotion[1], 'data': months}
             data.append(temp)
         return JsonResponse(data, safe=False)
+
+
+@login_required
+def list(request):
+    """
+    Render list of emotions
+    :param request:
+    :return:
+    """
+    if request.method == 'POST':
+        month = request.POST.get('month')
+        year = request.POST.get('year')
+        emotions = Emotion.objects.filter(created_at__month=month, created_at__year=year)
+        return render(request, 'list.html', {'month': calendar.month_name[int(month)],
+                                             'year': year, 'emotions': emotions})
+    today = datetime.datetime.now()
+    emotions = Emotion.objects.filter(created_at__month=today.month)
+    return render(request, 'list.html', {'month': today.strftime('%B'), 'year': today.year,
+                                         'emotions': emotions})
