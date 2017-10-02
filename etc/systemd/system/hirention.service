@@ -2,7 +2,7 @@
 Description=uWSGI instance to serve Hirention
 
 [Service]
-ExecStart=/bin/bash -c 'su prism; cd /home/prism/prod/Hirention; source .env/bin/activate; uwsgi --memory-report --enable-threads --ini hiren.ini'
+ExecStart=/bin/bash -c 'su prism; cd /home/prism/prod/Hirention; source .env/bin/activate; uwsgi --memory-report --enable-threads --ini hirention.ini'
 ExecReload=/bin/bash -c 'su prism; cd /home/prism/prod/Hirention; source .env/bin/activate; uwsgi --reload /run/Hirention.pid'
 ExecStop=/bin/bash -c ''su prism; cd /home/prism/prod/Hirention; source .env/bin/activate; uwsgi --stop /run/Hirention.pid'
 
