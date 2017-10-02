@@ -1,4 +1,4 @@
-from django.urls import resolve
+from django.urls import resolve, reverse
 from django.test import TestCase, TransactionTestCase
 from django.contrib.auth.models import User
 from django.test import Client
@@ -104,6 +104,12 @@ class EmotionSaveViewTest(TransactionTestCase):
     def test_redirect_works_for_anon_user(self):
         response = self.c.get('/emotion/An/')
         self.assertRedirects(response, '/?next=/emotion/An/')
+
+    def test_object_creation(self):
+        self.c.login(username='hiren', password='bunny')
+        response = self.c.post('/emotion/', data={'state': 'De', '_date': '10/02/2017',
+                                                  'reason': ''})
+        self.assertRedirects(response, '/emotion/De/')
 
 
 class ListViewTest(TransactionTestCase):
