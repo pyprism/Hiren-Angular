@@ -65,7 +65,7 @@ def emotion_save(request, key=None):
                 messages.error(request, e)
         else:
             messages.error(request, form.errors)
-        return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('emotion', key=request.POST.get('state'))
 
 
 @login_required
