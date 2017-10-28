@@ -51,7 +51,7 @@
                         <tr>
                             <th>{{ emotion.get_state_display }}</th>
                             <th>{{ emotion.reason|default_if_none:"" }}</th>
-                            <th>{{ emotion.created_at|date }}</th>
+                            <th>{{ emotion._date|date }}</th>
                         </tr>
                     {% endfor %}
                     </tbody>
