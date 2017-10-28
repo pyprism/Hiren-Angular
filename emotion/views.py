@@ -101,7 +101,7 @@ def list(request):
     if request.method == 'POST':
         month = request.POST.get('month')
         year = request.POST.get('year')
-        emotions = Emotion.objects.filter(created_at__month=month, created_at__year=year)
+        emotions = Emotion.objects.filter(_date__month=month, created_at__year=year)
         return render(request, 'list.html', {'month': calendar.month_name[int(month)],
                                              'year': year, 'emotions': emotions})
     today = datetime.datetime.now()
