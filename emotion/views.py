@@ -105,6 +105,6 @@ def list(request):
         return render(request, 'list.html', {'month': calendar.month_name[int(month)],
                                              'year': year, 'emotions': emotions})
     today = datetime.datetime.now()
-    emotions = Emotion.objects.filter(created_at__month=today.month)
+    emotions = Emotion.objects.filter(_date__month=today.month)
     return render(request, 'list.html', {'month': today.strftime('%B'), 'year': today.year,
                                          'emotions': emotions})
