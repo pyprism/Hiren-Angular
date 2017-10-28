@@ -83,7 +83,7 @@ def chart(request):
         for emotion in Emotion.emotion_option:
             months = []
             for hiren in range(1, 13):
-                single_month = Emotion.objects.filter(created_at__year=today.year, created_at__month=hiren,
+                single_month = Emotion.objects.filter(_date__year=today.year, _date__month=hiren,
                                                       state=emotion[0]).count()
                 months.append(single_month)
             temp = {'name': emotion[1], 'data': months}
