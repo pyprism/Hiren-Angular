@@ -1,5 +1,7 @@
 from django.db import models
+from  django import template
 
+register = template.Library()
 
 class Emotion(models.Model):
     emotion_option = (
@@ -19,3 +21,8 @@ class Emotion(models.Model):
     _date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @register.filter
+    def get_date(self):
+        return self._date
+
