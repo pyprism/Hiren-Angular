@@ -6,7 +6,7 @@ django-compressor==2.2
 django-debug-toolbar==1.9
 freezegun==0.3.10
 packaging==17.1
-psycopg2==2.7.3.2
+psycopg2==2.8.1
 pyparsing==2.2.0
 python-dateutil==2.7.2
 pytz==2018.4
