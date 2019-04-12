@@ -7,7 +7,7 @@ django-debug-toolbar==1.9
 freezegun==0.3.10
 packaging==17.1
 psycopg2==2.8.1
-pyparsing==2.2.0
+pyparsing==2.4.0
 python-dateutil==2.7.2
 pytz==2019.1
 raven==6.6.0
