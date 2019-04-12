@@ -10,7 +10,7 @@ psycopg2==2.8.1
 pyparsing==2.4.0
 python-dateutil==2.7.2
 pytz==2019.1
-raven==6.6.0
+raven==6.10.0
 rcssmin==1.0.6
 rjsmin==1.0.12
 six==1.12.0
