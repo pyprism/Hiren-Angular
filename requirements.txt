@@ -13,6 +13,6 @@ pytz==2019.1
 raven==6.6.0
 rcssmin==1.0.6
 rjsmin==1.0.12
-six==1.11.0
+six==1.12.0
 sqlparse==0.2.4
 uWSGI==2.0.18
